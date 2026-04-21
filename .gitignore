@@ -1,0 +1,58 @@
+# Python相关忽略规则
+
+# 字节码缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境
+venv/
+env/
+ENV/
+.env
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统生成的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 日志文件
+*.log
+logs/
+
+# 数据库文件
+*.db
+*.sqlite
+*.sqlite3
+
+# 配置文件（包含敏感信息）
+config.ini
+.env
+secrets.json
+
+# 临时文件
+*.tmp
+*.temp
+temp/
+
+# 测试覆盖率报告
+htmlcov/
+.coverage
+.pytest_cache/
+
+# 打包文件
+*.zip
+*.tar.gz
+dist/
+build/
