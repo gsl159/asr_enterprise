@@ -1,0 +1,45 @@
+# ===============================
+# Enterprise ASR - RTX 5090 CUDA13 Environment
+# Torch 2.8.0 + cu128
+# ===============================
+
+# ===== Build Tools (必须优先安装) =====
+setuptools>=65.0.0,<81         # keep pkg_resources available for legacy deps
+wheel>=0.40.0                  # Wheel 格式支持
+pip>=23.0.0                    # Pip 包管理器
+
+# ===== Deep Learning =====
+torch==2.8.0+cu128
+torchaudio==2.8.0+cu128
+torchvision==0.23.0+cu128
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+# ===== Web =====
+fastapi==0.110.0
+uvicorn[standard]==0.27.1
+
+# ===== ASR =====
+openai-whisper==20250625       # 与 torch 2.8 + triton 3.x 兼容
+funasr==1.0.20
+modelscope>=1.17.0,<2.0.0      # required by paraformer_zh
+
+# ===== Audio =====
+librosa==0.10.1
+soundfile==0.12.1
+numpy>=1.24.0
+scipy>=1.10.0
+
+# ===== Config =====
+pyyaml==6.0.1
+pydantic==2.6.1
+
+# ===== Monitoring =====
+psutil==5.9.8
+
+# ===== Production =====
+gunicorn==21.2.0
+
+# ===== 补充缺失依赖 (必须补充) =====
+aiofiles==23.2.1              # 异步文件I/O (main.py第4行必需)
+python-json-logger==2.0.7     # 结构化日志 (logger.py必需)
+python-dotenv==1.0.0          # 环境变量管理 (lifecycle.py必需)

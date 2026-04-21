@@ -1,0 +1,80 @@
+# ===============================
+# Enterprise ASR Production Config
+# ===============================
+
+system:
+  env: "production"
+  log_level: "INFO"
+
+# -------------------------------
+# GPU Settings
+# -------------------------------
+gpu:
+  auto_detect: false
+  devices: ["cuda:0", "cuda:1", "cuda:2", "cuda:5", "cuda:3", "cuda:4"]
+
+# -------------------------------
+# Model Settings
+# -------------------------------
+models:
+  max_models_per_worker: 1
+  load:
+    - paraformer_qf
+    - whisper_turbo
+    - paraformer_zh
+    - sensevoice
+    - wenet_speech
+    - funasr_nano
+
+  language: "zh"
+  timeout_seconds: 300
+
+# -------------------------------
+# Concurrency Settings
+# -------------------------------
+concurrency:
+  max_requests: 16
+  worker_process_per_gpu: 1
+
+# -------------------------------
+# VAD Settings
+# -------------------------------
+vad:
+  enabled: true
+  model_path: "/home/qf/lyn/asr_benchmark/init_model/speech_fsmn_vad_zh-cn-16k-common-pytorch"
+  output_dir: "./outputs"
+  sample_rate: 16000
+  pad_ms: 200
+  merge_gap_ms: 300
+  min_seg_ms: 500
+  max_seg_ms: 10000
+
+# -------------------------------
+# Speaker Settings
+# -------------------------------
+speaker:
+  enabled: true
+  library_dir: "./speaker_library"
+  sample_rate: 16000
+  min_score: 0.35
+
+# -------------------------------
+# API Settings
+# -------------------------------
+api:
+  host: "0.0.0.0"
+  port: 8000
+
+# -------------------------------
+# Output Settings
+# -------------------------------
+output:
+  save_results: false
+  output_dir: "./outputs"
+
+# -------------------------------
+# Monitoring
+# -------------------------------
+monitor:
+  enable_resource_log: true
+  resource_log_interval_sec: 60
